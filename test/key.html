@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Key的学习</title>
+  <script src="./vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <!-- 添加新名称 -->
+    <div>
+      <input type="text" v-model="uname"/>
+      <button @click="add">添加</button>
+    </div>
+    <ul>
+      <li v-for="item in list" :key="item.id">
+        <input type="checkbox">
+        编号:{{item.id}} --- 姓名:{{item.name}}
+      </li>
+    </ul>
+  </div>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        uname: '',
+        list: [
+          {id: 0, name: '刘德华'},
+          {id: 1, name: '郭富城'},
+          {id: 2, name: '黎明'},
+          {id: 3, name: '张学友'}
+        ]
+      },
+      methods:{
+        add(){
+          //生成新对象
+          var tempUser = {id: this.list.length, name: this.uname}
+          this.list.unshift(tempUser)
+          this.uname = ''
+        }
+      }
+    })
+  </script>
+</body>
+</html>
